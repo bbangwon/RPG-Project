@@ -3,10 +3,7 @@ using UnityEngine.AI;
 
 public class Mover : MonoBehaviour
 {
-    [SerializeField] Transform target;
-
     NavMeshAgent navMeshAgent;
-    Ray lastRay;
 
     private void Awake()
     {
@@ -15,16 +12,19 @@ public class Mover : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            lastRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            MoveToCursor();
         }
+    }
 
-        Debug.DrawRay(lastRay.origin, lastRay.direction * 100, Color.white);
-
-        if (transform != null && navMeshAgent != null)
+    private void MoveToCursor()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            navMeshAgent.SetDestination(target.position);
+            hit.point = new Vector3(hit.point.x, 0, hit.point.z);
+            navMeshAgent.SetDestination(hit.point);
         }
     }
 }
