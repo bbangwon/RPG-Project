@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,21 +14,12 @@ public class Mover : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
-        {
-            MoveToCursor();
-        }
         UpdateAnimator();
     }
 
-    private void MoveToCursor()
+    public void MoveTo(Vector3 destination)
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit))
-        {
-            hit.point = new Vector3(hit.point.x, 0, hit.point.z);
-            navMeshAgent.SetDestination(hit.point);
-        }
+        navMeshAgent.SetDestination(destination);
     }
     private void UpdateAnimator()
     {
