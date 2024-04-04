@@ -19,11 +19,12 @@ namespace RPG.Control
         // Update is called once per frame
         void Update()
         {
-            InteractWithCombat();
-            InteractWithMovement();
+            //액션 우선 순위
+            if (InteractWithCombat()) return;
+            if (InteractWithMovement()) return;
         }
 
-        private void InteractWithCombat()
+        private bool InteractWithCombat()
         {
             RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
             foreach (RaycastHit hit in hits)
@@ -35,26 +36,28 @@ namespace RPG.Control
 
                     if(Input.GetMouseButtonDown(0))
                     {
-                        fighter.Attack(target);
+                        fighter.Attack(target);                        
                     }
+
+                    //커서 어포던스(Affordance)를 제공하기 위해 if문 바깥으로 빼냄
+                    //(어떤 행동을 유도하는 것) 커서를 바꿔줌
+                    return true;
                 }
             }
+            return false;
         }
 
-        private void InteractWithMovement()
-        {
-            if (Input.GetMouseButton(0))
-            {
-                MoveToCursor();
-            }
-        }
-
-        private void MoveToCursor()
+        private bool InteractWithMovement()
         {
             if (Physics.Raycast(GetMouseRay(), out RaycastHit hit))
             {
-                mover.MoveTo(hit.point);
+                if (Input.GetMouseButton(0))
+                {
+                    mover.MoveTo(hit.point);
+                }
+                return true;
             }
+            return false;
         }
 
         private Ray GetMouseRay()
