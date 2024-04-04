@@ -22,7 +22,14 @@ namespace RPG.Movement
         public void MoveTo(Vector3 destination)
         {
             navMeshAgent.SetDestination(destination);
+            navMeshAgent.isStopped = false;
         }
+
+        public void Stop()
+        {
+            navMeshAgent.isStopped = true;
+        }
+
         private void UpdateAnimator()
         {
             Vector3 velocity = navMeshAgent.velocity;
