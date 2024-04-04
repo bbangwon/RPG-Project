@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using RPG.Combat;
 
 namespace RPG.Movement
 {
@@ -17,6 +18,14 @@ namespace RPG.Movement
         void Update()
         {
             UpdateAnimator();
+        }
+
+        //이동 액션을 시작
+        public void StartMoveAction(Vector3 destination)
+        {
+            //순환의존..
+            GetComponent<Fighter>().Cancel();            
+            MoveTo(destination);
         }
 
         public void MoveTo(Vector3 destination)

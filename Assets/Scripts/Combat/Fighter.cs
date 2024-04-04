@@ -25,22 +25,26 @@ namespace RPG.Combat
 
         private void Update()
         {
-            if(target != null)
-            {       
-                if (!GetIsRange())
-                {
-                    mover.MoveTo(target.position);
-                }
-                else
-                {
-                    mover.Stop();
-                }
+            if (target == null) return;
+
+            if (!GetIsRange())
+            {
+                mover.MoveTo(target.position);
+            }
+            else
+            {
+                mover.Stop();
             }
         }
 
         public void Attack(CombatTarget combatTarget)
         {
             this.target = combatTarget.transform;
+        }
+
+        public void Cancel()
+        {
+            target = null;
         }
     }
 }

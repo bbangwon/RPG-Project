@@ -1,6 +1,7 @@
 using RPG.Combat;
 using RPG.Movement;
 using System;
+using UnityEditor.TerrainTools;
 using UnityEngine;
 
 namespace RPG.Control
@@ -53,7 +54,7 @@ namespace RPG.Control
             {
                 if (Input.GetMouseButton(0))
                 {
-                    mover.MoveTo(hit.point);
+                    mover.StartMoveAction(hit.point);
                 }
                 return true;
             }
