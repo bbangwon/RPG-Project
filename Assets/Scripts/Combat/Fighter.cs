@@ -1,3 +1,4 @@
+using RPG.Core;
 using RPG.Movement;
 using UnityEngine;
 
@@ -40,6 +41,7 @@ namespace RPG.Combat
         public void Attack(CombatTarget combatTarget)
         {
             this.target = combatTarget.transform;
+            GetComponent<ActionScheduler>().StartAction(this);
         }
 
         public void Cancel()
