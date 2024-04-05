@@ -4,16 +4,19 @@ using UnityEngine;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour
+    public class Fighter : MonoBehaviour, IAction
     {
         [SerializeField] float weaponRange = 2f;
 
         Transform target;
         Mover mover;
 
+        ActionScheduler actionScheduler;
+
         private void Start()
         {
             mover = GetComponent<Mover>();
+            actionScheduler = GetComponent<ActionScheduler>();
         }
 
         bool GetIsRange()
@@ -34,14 +37,14 @@ namespace RPG.Combat
             }
             else
             {
-                mover.Stop();
+                mover.Cancel();
             }
         }
 
         public void Attack(CombatTarget combatTarget)
         {
             this.target = combatTarget.transform;
-            GetComponent<ActionScheduler>().StartAction(this);
+            actionScheduler.StartAction(this);
         }
 
         public void Cancel()

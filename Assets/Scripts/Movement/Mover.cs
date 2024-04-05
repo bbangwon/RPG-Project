@@ -1,19 +1,21 @@
 using UnityEngine;
 using UnityEngine.AI;
-using RPG.Combat;
 using RPG.Core;
 
 namespace RPG.Movement
 {
-    public class Mover : MonoBehaviour
+    public class Mover : MonoBehaviour, IAction
     {
         NavMeshAgent navMeshAgent;
         Animator animator;
+
+        ActionScheduler actionScheduler;
 
         private void Awake()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
             animator = GetComponentInChildren<Animator>();
+            actionScheduler = GetComponent<ActionScheduler>();
         }
 
         void Update()
@@ -24,9 +26,7 @@ namespace RPG.Movement
         //이동 액션을 시작
         public void StartMoveAction(Vector3 destination)
         {
-            //순환의존..
-            GetComponent<Fighter>().Cancel();  
-            GetComponent<ActionScheduler>().StartAction(this);
+            actionScheduler.StartAction(this);
             MoveTo(destination);
         }
 
@@ -36,7 +36,7 @@ namespace RPG.Movement
             navMeshAgent.isStopped = false;
         }
 
-        public void Stop()
+        public void Cancel()
         {
             navMeshAgent.isStopped = true;
         }
@@ -51,5 +51,4 @@ namespace RPG.Movement
             animator.SetFloat("forwardSpeed", speed);
         }
     }
-
 }
