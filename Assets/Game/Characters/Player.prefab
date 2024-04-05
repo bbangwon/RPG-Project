@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 234645907367702909}
   - component: {fileID: 4981102399459718308}
   - component: {fileID: 7822749028180262973}
+  - component: {fileID: 3136628750716835902}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -108,6 +109,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47d2f2a60d298374681edc9e239081cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &3136628750716835902
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389526187643377122}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
+  m_Controller: {fileID: 9100000, guid: 1da39e3802d78c54081b1806db1422b4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &6968969512969823513
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -161,6 +183,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9505156, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9505156, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 1da39e3802d78c54081b1806db1422b4, type: 2}
@@ -172,7 +198,8 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9505156, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
