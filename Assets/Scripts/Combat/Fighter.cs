@@ -34,7 +34,6 @@ namespace RPG.Combat
             return distanceToTarget < weaponRange;
         }
 
-
         private void Update()
         {
             timeSinceLastAttack += Time.deltaTime;
@@ -58,10 +57,15 @@ namespace RPG.Combat
             transform.LookAt(target.transform);
             if (timeSinceLastAttack >= timeBetweenAttacks)
             {
-                animator.ResetTrigger("stopAttack");
-                animator.SetTrigger("attack");
+                TrggerAttack();
                 timeSinceLastAttack = 0f;               
             }
+        }
+
+        void TrggerAttack()
+        {
+            animator.ResetTrigger("stopAttack");
+            animator.SetTrigger("attack");
         }
 
         public void Attack(CombatTarget combatTarget)
@@ -72,8 +76,14 @@ namespace RPG.Combat
 
         public void Cancel()
         {
-            animator.SetTrigger("stopAttack");
+            TriggerStopAttack();
             target = null;
+        }
+
+        void TriggerStopAttack()
+        {
+            animator.ResetTrigger("attack");
+            animator.SetTrigger("stopAttack");
         }
 
         // Animation Event
