@@ -33,7 +33,8 @@ namespace RPG.Control
                 //hit.transform을 사용하면 rigidbody또는 collider를 모두 사용하여 감지함
                 if(hit.transform.TryGetComponent(out CombatTarget target))
                 {
-                    if (target == null) continue;
+                    if(target == null) continue;
+                    if(target.IsDead()) continue;
 
                     if(Input.GetMouseButtonDown(0))
                     {
