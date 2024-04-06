@@ -10,6 +10,10 @@ namespace RPG.Combat
         Animator animator;
 
         bool isDead = false;
+        public bool IsDead()
+        {
+            return isDead;
+        }
 
         private void Awake()
         {

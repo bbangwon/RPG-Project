@@ -1,11 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Combat
 {
-	public class CombatTarget : MonoBehaviour
-	{
+    [RequireComponent(typeof(Health))]
+    public class CombatTarget : MonoBehaviour
+    {
+        Health health;
+        private void Awake()
+        {
+            health = GetComponent<Health>();
+        }
 
-	}
+        public bool IsDead()
+        {
+            return health.IsDead();
+        }
+
+        public void TakeDamage(float damage)
+        {
+            health.TakeDamage(damage);
+        }
+    }
 }
