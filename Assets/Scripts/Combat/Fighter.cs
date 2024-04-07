@@ -17,7 +17,7 @@ namespace RPG.Combat
         Mover mover;
         Health health;
 
-        float timeSinceLastAttack = 0f;
+        float timeSinceLastAttack = Mathf.Infinity;
 
         private void Start()
         {

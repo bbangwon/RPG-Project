@@ -1,4 +1,5 @@
 using RPG.Combat;
+using RPG.Core;
 using UnityEngine;
 
 namespace RPG.Control
@@ -7,12 +8,15 @@ namespace RPG.Control
     {
         [SerializeField] float chaseDistance = 5f;
 
-        CombatTarget player;
         Fighter fighter;
+        Health health;
+
+        CombatTarget player;
 
         private void Awake()
         {
             fighter = GetComponent<Fighter>();
+            health = GetComponent<Health>();
         }
 
         private void Start()
@@ -22,6 +26,12 @@ namespace RPG.Control
         }
 
         private void Update()
+        {
+            if (health.IsDead()) return;
+            InteractWithCombat();
+        }
+
+        private void InteractWithCombat()
         {
             if (!fighter.CanAttack(player)) return;
             if (InAttackRangeOfPlayer())
