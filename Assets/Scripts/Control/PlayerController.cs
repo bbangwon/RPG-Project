@@ -29,9 +29,7 @@ namespace RPG.Control
             {
                 if (hit.transform.TryGetComponent(out CombatTarget target))
                 {
-                    if (target == null) continue;
-                    if (target.IsDead()) continue;
-
+                    if (!fighter.CanAttack(target)) continue;
                     if (Input.GetMouseButtonDown(0))
                     {
                         fighter.Attack(target);

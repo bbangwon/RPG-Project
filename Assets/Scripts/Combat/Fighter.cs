@@ -70,8 +70,9 @@ namespace RPG.Combat
         public bool CanAttack(CombatTarget combatTarget)
         {
             if (combatTarget == null) return false;
-            if (health.IsDead()) return false;
             if (combatTarget.IsDead()) return false;
+            if (combatTarget.gameObject == gameObject) return false;
+            if (health.IsDead()) return false;
 
             return true;
         }
