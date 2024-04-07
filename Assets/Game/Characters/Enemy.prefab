@@ -79,6 +79,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 3011242630255812139, guid: 712fd322680ca2e45a096afa9a7b58cc, type: 3}
+      propertyPath: m_Speed
+      value: 2.83
+      objectReference: {fileID: 0}
     - target: {fileID: 3214220607353189453, guid: 712fd322680ca2e45a096afa9a7b58cc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -136,9 +140,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1389526187643377122, guid: 712fd322680ca2e45a096afa9a7b58cc, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 455356535534809781}
-    - targetCorrespondingSourceObject: {fileID: 1389526187643377122, guid: 712fd322680ca2e45a096afa9a7b58cc, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 5031361242197255438}
     - targetCorrespondingSourceObject: {fileID: 1389526187643377122, guid: 712fd322680ca2e45a096afa9a7b58cc, type: 3}
       insertIndex: -1
@@ -154,18 +155,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1389526187643377122, guid: 712fd322680ca2e45a096afa9a7b58cc, type: 3}
   m_PrefabInstance: {fileID: 6997284235081369261}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &455356535534809781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8238154938818057039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6fcdb6e13cebb24d91e24305e43a751, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &5031361242197255438
 CapsuleCollider:
   m_ObjectHideFlags: 0

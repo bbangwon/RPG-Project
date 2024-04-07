@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -18,7 +17,7 @@ namespace RPG.Combat
         private void Awake()
         {
             animator = GetComponent<Animator>();
-        
+
         }
 
         public void TakeDamage(float damage)
@@ -26,7 +25,7 @@ namespace RPG.Combat
             healthPoints = Mathf.Max(healthPoints - damage, 0);
             Debug.Log(healthPoints);
 
-            if(healthPoints == 0)
+            if (healthPoints == 0)
             {
                 Die();
             }
