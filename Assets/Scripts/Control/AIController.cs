@@ -1,6 +1,7 @@
 using RPG.Combat;
 using RPG.Core;
 using RPG.Movement;
+using UnityEditor.TerrainTools;
 using UnityEngine;
 
 namespace RPG.Control
@@ -8,6 +9,7 @@ namespace RPG.Control
     public class AIController : MonoBehaviour
     {
         [SerializeField] float chaseDistance = 5f;
+        [SerializeField] float suspicionTime = 5f;
 
         Fighter fighter;
         Health health;
@@ -17,11 +19,18 @@ namespace RPG.Control
 
         Vector3 guardLocation;
 
+        ActionScheduler actionScheduler;
+
+        [SerializeField]
+        float timeSinceLastSawPlayer = Mathf.Infinity;
+
         private void Awake()
         {
             fighter = GetComponent<Fighter>();
             health = GetComponent<Health>();
             mover = GetComponent<Mover>();
+
+            actionScheduler = GetComponent<ActionScheduler>();
         }
 
         private void Start()
@@ -43,12 +52,35 @@ namespace RPG.Control
             if (!fighter.CanAttack(player)) return;
             if (InAttackRangeOfPlayer())
             {
-                fighter.Attack(player);
+                timeSinceLastSawPlayer = 0;
+                AttackBehaviour();
+            }
+            else if(timeSinceLastSawPlayer < suspicionTime)
+            {
+                //의심 구간...
+                SuspicionBehaviour();
             }
             else
             {
-                mover.StartMoveAction(guardLocation);
+                GuardBehaviour();
             }
+
+            timeSinceLastSawPlayer += Time.deltaTime;
+        }
+
+        private void GuardBehaviour()
+        {
+            mover.StartMoveAction(guardLocation);
+        }
+
+        private void AttackBehaviour()
+        {
+            fighter.Attack(player);
+        }
+
+        private void SuspicionBehaviour()
+        {
+            actionScheduler.CancelCurrentAction();
         }
 
         bool InAttackRangeOfPlayer()

@@ -191,3 +191,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseDistance: 5
+  suspicionTime: 5
+  timeSinceLastSawPlayer: Infinity
