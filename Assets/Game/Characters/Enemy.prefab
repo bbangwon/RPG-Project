@@ -123,13 +123,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4981102399459718308, guid: 712fd322680ca2e45a096afa9a7b58cc, type: 3}
+      propertyPath: weaponDamage
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8677045392792311592, guid: 712fd322680ca2e45a096afa9a7b58cc, type: 3}
       propertyPath: health
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8677045392792311592, guid: 712fd322680ca2e45a096afa9a7b58cc, type: 3}
       propertyPath: healthPoints
-      value: 20
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -192,4 +196,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chaseDistance: 5
   suspicionTime: 5
-  timeSinceLastSawPlayer: Infinity
+  patrolPath: {fileID: 0}
+  waypointTolerance: 1
+  waypointDwellTime: 3
