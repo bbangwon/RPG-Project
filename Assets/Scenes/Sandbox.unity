@@ -3838,6 +3838,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8391454481065709161, guid: 0d9730e10b82b24419bdd7542c64312c, type: 3}
+      propertyPath: destination
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8391454481065709161, guid: 0d9730e10b82b24419bdd7542c64312c, type: 3}
       propertyPath: sceneToLoad
       value: 1
       objectReference: {fileID: 0}
