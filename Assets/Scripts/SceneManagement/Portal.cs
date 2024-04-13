@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,8 +12,16 @@ namespace RPG.SceneManagement
             Debug.Log("Player entered portal");
             if (other.tag == "Player")
             {
-                SceneManager.LoadScene(sceneToLoad);
+                StartCoroutine(Transition());
             }
+        }
+
+        private IEnumerator Transition()
+        {
+            DontDestroyOnLoad(gameObject);
+            yield return SceneManager.LoadSceneAsync(sceneToLoad);
+            Debug.Log("Scene loaded");
+            Destroy(gameObject);
         }
     }
 
