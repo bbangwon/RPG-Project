@@ -1822,6 +1822,7 @@ GameObject:
   - component: {fileID: 919446163}
   - component: {fileID: 919446162}
   - component: {fileID: 919446161}
+  - component: {fileID: 919446164}
   m_Layer: 5
   m_Name: Fader
   m_TagString: Untagged
@@ -1961,6 +1962,18 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &919446164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919446156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27b1f39b3e4a80745a8b029a55a3fd7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &963194229 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4068596007095490422, guid: ef02cd4406acef745b7a1e041a64be20, type: 3}
