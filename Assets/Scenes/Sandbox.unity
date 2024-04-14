@@ -353,6 +353,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 183718879}
     m_Modifications:
+    - target: {fileID: 1370894837390358973, guid: 0f8f4d2242c51204086d18b57f6fa347, type: 3}
+      propertyPath: uniqueIdentifier
+      value: 1dd5cccf-75a5-4c0e-a2ff-f39daf74a458
+      objectReference: {fileID: 0}
     - target: {fileID: 4725472099577424499, guid: 0f8f4d2242c51204086d18b57f6fa347, type: 3}
       propertyPath: patrolPath
       value: 
@@ -985,6 +989,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 183718879}
     m_Modifications:
+    - target: {fileID: 1370894837390358973, guid: 0f8f4d2242c51204086d18b57f6fa347, type: 3}
+      propertyPath: uniqueIdentifier
+      value: 9ca5057e-1028-4a3e-9b59-9abf729bbd26
+      objectReference: {fileID: 0}
     - target: {fileID: 1833059879491998085, guid: 0f8f4d2242c51204086d18b57f6fa347, type: 3}
       propertyPath: healthPoint
       value: 20
@@ -1459,6 +1467,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 01b2546c969fe814794af634cb4534f4, type: 2}
+    - target: {fileID: 1370894837390358973, guid: 0f8f4d2242c51204086d18b57f6fa347, type: 3}
+      propertyPath: uniqueIdentifier
+      value: c96c265c-d7df-452b-8498-6e1eec812c81
+      objectReference: {fileID: 0}
     - target: {fileID: 1833059879491998085, guid: 0f8f4d2242c51204086d18b57f6fa347, type: 3}
       propertyPath: healthPoints
       value: 80
@@ -2408,6 +2420,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 183718879}
     m_Modifications:
+    - target: {fileID: 1370894837390358973, guid: 0f8f4d2242c51204086d18b57f6fa347, type: 3}
+      propertyPath: uniqueIdentifier
+      value: 6956a392-32a2-475a-a394-696fa14f2f91
+      objectReference: {fileID: 0}
     - target: {fileID: 4725472099577424499, guid: 0f8f4d2242c51204086d18b57f6fa347, type: 3}
       propertyPath: patrolPath
       value: 
@@ -2702,6 +2718,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 183718879}
     m_Modifications:
+    - target: {fileID: 1370894837390358973, guid: 0f8f4d2242c51204086d18b57f6fa347, type: 3}
+      propertyPath: uniqueIdentifier
+      value: 63b8c545-b480-474c-978f-679a7cc290cb
+      objectReference: {fileID: 0}
     - target: {fileID: 1833059879491998085, guid: 0f8f4d2242c51204086d18b57f6fa347, type: 3}
       propertyPath: healthPoint
       value: 20
@@ -3944,6 +3964,10 @@ PrefabInstance:
     - target: {fileID: 788420847021693299, guid: 8fd4794301c14c047ae586d4c0034c13, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676548242387487024, guid: 8fd4794301c14c047ae586d4c0034c13, type: 3}
+      propertyPath: uniqueIdentifier
+      value: 8e832248-e4f4-451e-af6d-937369bc8a15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
