@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace RPG.Saving
+namespace RPG.SavingV0
 {
     [ExecuteAlways]
     public class SaveableEntity : MonoBehaviour
