@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 
 namespace RPG.Saving
@@ -6,12 +7,17 @@ namespace RPG.Saving
     {
         public void Save(string saveFile)
         {
-            Debug.Log("Would save to " + saveFile);
+            Debug.Log("Would save to " + GetPathFromSaveFile(saveFile));
         }
 
         public void Load(string saveFile)
         {
-            Debug.Log("Would load from " + saveFile);
+            Debug.Log("Would load from " + GetPathFromSaveFile(saveFile));
+        }
+
+        private string GetPathFromSaveFile(string saveFile)
+        {
+            return Path.Combine(Application.persistentDataPath, saveFile + ".sav");
         }
     }
 }
