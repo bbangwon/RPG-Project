@@ -10,15 +10,20 @@ namespace RPG.Saving
         {
             string path = GetPathFromSaveFile(saveFile);
             Debug.Log("Would save to " + path);
-            FileStream stream = File.Open(path, FileMode.Create);
+            using FileStream stream = File.Open(path, FileMode.Create);
             byte[] bytes = Encoding.UTF8.GetBytes("Çï·Î¿ì ¿ùµå!");
             stream.Write(bytes, 0, bytes.Length);
-            stream.Close();
         }
 
         public void Load(string saveFile)
         {
-            Debug.Log("Would load from " + GetPathFromSaveFile(saveFile));
+            string path = GetPathFromSaveFile(saveFile);
+            Debug.Log("Would load from " + path);
+            using FileStream stream = File.Open(path, FileMode.Open);
+            byte[] buffer = new byte[stream.Length];
+            stream.Read(buffer, 0, buffer.Length);
+
+            Debug.Log(Encoding.UTF8.GetString(buffer));
         }
 
         private string GetPathFromSaveFile(string saveFile)
