@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace RPG.Saving
@@ -12,13 +14,7 @@ namespace RPG.Saving
             Debug.Log("Would save to " + path);
             using FileStream stream = File.Open(path, FileMode.Create);
 
-            Transform playerTransform = GetPlayerTransform();
-            JsonSerializer.Serialize(stream, new SerializableVector3(playerTransform.position));
-        }
-
-        private Transform GetPlayerTransform()
-        {
-            return GameObject.FindWithTag("Player").transform;
+            JsonSerializer.Serialize(stream, CaptureState(), new JsonSerializerOptions { WriteIndented = true });
         }
 
         public void Load(string saveFile)
@@ -27,10 +23,29 @@ namespace RPG.Saving
             Debug.Log("Would load from " + path);
             using FileStream stream = File.Open(path, FileMode.Open);
 
-            SerializableVector3 position = JsonSerializer.Deserialize<SerializableVector3>(stream);
+            RestoreCapture(JsonSerializer.Deserialize<Dictionary<string, object>>(stream));
+        }
 
-            Transform playerTransform = GetPlayerTransform();
-            playerTransform.position = position.ToVector();
+        private Dictionary<string, object> CaptureState()
+        {
+            Dictionary<string, object> state = new Dictionary<string, object>();
+            foreach(SaveableEntity saveable in FindObjectsOfType<SaveableEntity>())
+            {
+                state[saveable.GetUniqueIdentifier()] = saveable.CaptureState();
+            }
+            return state;
+        }
+
+        private void RestoreCapture(Dictionary<string, object> state)
+        {
+            foreach(SaveableEntity saveable in FindObjectsOfType<SaveableEntity>())
+            {
+                string id = saveable.GetUniqueIdentifier();
+                if(state.ContainsKey(id))
+                {
+                    saveable.RestoreState(state[id]);
+                }
+            }
         }
 
         private string GetPathFromSaveFile(string saveFile)
