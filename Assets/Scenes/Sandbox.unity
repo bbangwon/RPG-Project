@@ -357,6 +357,10 @@ PrefabInstance:
       propertyPath: uniqueIdentifier
       value: 1dd5cccf-75a5-4c0e-a2ff-f39daf74a458
       objectReference: {fileID: 0}
+    - target: {fileID: 3269202604976530395, guid: 0f8f4d2242c51204086d18b57f6fa347, type: 3}
+      propertyPath: uniqueIdentifier
+      value: 8f02c41a-cf27-4219-be4c-95c91f6b9c9c
+      objectReference: {fileID: 0}
     - target: {fileID: 4725472099577424499, guid: 0f8f4d2242c51204086d18b57f6fa347, type: 3}
       propertyPath: patrolPath
       value: 
@@ -997,6 +1001,10 @@ PrefabInstance:
       propertyPath: healthPoint
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 3269202604976530395, guid: 0f8f4d2242c51204086d18b57f6fa347, type: 3}
+      propertyPath: uniqueIdentifier
+      value: 5644e45a-00f1-48c8-b87e-96f9f2a01fce
+      objectReference: {fileID: 0}
     - target: {fileID: 5584582751525384928, guid: 0f8f4d2242c51204086d18b57f6fa347, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.24
@@ -1474,6 +1482,10 @@ PrefabInstance:
     - target: {fileID: 1833059879491998085, guid: 0f8f4d2242c51204086d18b57f6fa347, type: 3}
       propertyPath: healthPoints
       value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 3269202604976530395, guid: 0f8f4d2242c51204086d18b57f6fa347, type: 3}
+      propertyPath: uniqueIdentifier
+      value: fe6f85c6-2334-431c-aae4-b84b81976d13
       objectReference: {fileID: 0}
     - target: {fileID: 5584582751525384928, guid: 0f8f4d2242c51204086d18b57f6fa347, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2424,6 +2436,10 @@ PrefabInstance:
       propertyPath: uniqueIdentifier
       value: 6956a392-32a2-475a-a394-696fa14f2f91
       objectReference: {fileID: 0}
+    - target: {fileID: 3269202604976530395, guid: 0f8f4d2242c51204086d18b57f6fa347, type: 3}
+      propertyPath: uniqueIdentifier
+      value: bd67299b-7807-4296-9060-2e0e60128faf
+      objectReference: {fileID: 0}
     - target: {fileID: 4725472099577424499, guid: 0f8f4d2242c51204086d18b57f6fa347, type: 3}
       propertyPath: patrolPath
       value: 
@@ -2725,6 +2741,10 @@ PrefabInstance:
     - target: {fileID: 1833059879491998085, guid: 0f8f4d2242c51204086d18b57f6fa347, type: 3}
       propertyPath: healthPoint
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3269202604976530395, guid: 0f8f4d2242c51204086d18b57f6fa347, type: 3}
+      propertyPath: uniqueIdentifier
+      value: 817f79a6-5d8c-4c31-b3c6-5d0862ed14eb
       objectReference: {fileID: 0}
     - target: {fileID: 5584582751525384928, guid: 0f8f4d2242c51204086d18b57f6fa347, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3964,6 +3984,10 @@ PrefabInstance:
     - target: {fileID: 788420847021693299, guid: 8fd4794301c14c047ae586d4c0034c13, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2962423369866548054, guid: 8fd4794301c14c047ae586d4c0034c13, type: 3}
+      propertyPath: uniqueIdentifier
+      value: fd770510-b812-44e6-b367-b8d4e5e17688
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
