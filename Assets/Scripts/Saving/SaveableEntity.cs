@@ -1,4 +1,9 @@
 using UnityEngine;
+using UnityEngine.AI;
+using RPG.Core;
+using System.Text.Json;
+
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -12,18 +17,23 @@ namespace RPG.Saving
         [SerializeField] private string uniqueIdentifier = "";
         public string GetUniqueIdentifier()
         {
-            return "";
+            return uniqueIdentifier;
         }
 
         public object CaptureState()
         {
-            Debug.Log("Capturing state for " + GetUniqueIdentifier());
-            return null;
+            return new SerializableVector3(transform.position);
         }
 
         public void RestoreState(object state)
         {
-            Debug.Log("Restoring state for " + GetUniqueIdentifier());
+            GetComponent<NavMeshAgent>().enabled = false;
+
+            SerializableVector3 serializablePostion = JsonSerializer.Deserialize<SerializableVector3>(state.ToString());
+            transform.position = serializablePostion.ToVector();
+
+            GetComponent<NavMeshAgent>().enabled = true;
+            GetComponent<ActionScheduler>().CancelCurrentAction();
         }
 
 #if UNITY_EDITOR

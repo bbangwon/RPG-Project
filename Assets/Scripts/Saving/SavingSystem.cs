@@ -14,7 +14,10 @@ namespace RPG.Saving
             Debug.Log("Would save to " + path);
             using FileStream stream = File.Open(path, FileMode.Create);
 
-            JsonSerializer.Serialize(stream, CaptureState(), new JsonSerializerOptions { WriteIndented = true });
+            JsonSerializer.Serialize(stream, CaptureState(), 
+                new JsonSerializerOptions { 
+                    WriteIndented = true
+                });
         }
 
         public void Load(string saveFile)
