@@ -11,7 +11,9 @@ namespace RPG.Saving
     {
         public void Save(string saveFile)
         {
-            SaveFile(saveFile, CaptureState());
+            Dictionary<string, object> state = LoadFile(saveFile);
+            CaptureState(state);
+            SaveFile(saveFile, state);
         }
 
         public void Load(string saveFile)
@@ -22,7 +24,6 @@ namespace RPG.Saving
         private void SaveFile(string saveFile, Dictionary<string, object> dictionary)
         {
             string path = GetPathFromSaveFile(saveFile);
-            Debug.Log("Would save to " + path);
             using FileStream stream = File.Open(path, FileMode.Create);
 
             JsonSerializer.Serialize(stream, dictionary,
@@ -35,20 +36,19 @@ namespace RPG.Saving
         private Dictionary<string, object> LoadFile(string saveFile)
         {
             string path = GetPathFromSaveFile(saveFile);
-            Debug.Log("Would load from " + path);
-            using FileStream stream = File.Open(path, FileMode.Open);
 
+            if (!File.Exists(path)) return new Dictionary<string, object>();
+
+            using FileStream stream = File.Open(path, FileMode.Open);
             return JsonSerializer.Deserialize<Dictionary<string, object>>(stream);
         }
 
-        private Dictionary<string, object> CaptureState()
+        private void CaptureState(Dictionary<string, object> state)
         {
-            Dictionary<string, object> state = new Dictionary<string, object>();
             foreach (SaveableEntity saveable in FindObjectsOfType<SaveableEntity>())
             {
                 state[saveable.GetUniqueIdentifier()] = saveable.CaptureState();
             }
-            return state;
         }
 
         private void RestoreCapture(Dictionary<string, object> state)
