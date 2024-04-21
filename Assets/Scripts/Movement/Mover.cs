@@ -1,8 +1,8 @@
 ﻿using RPG.Core;
 using UnityEngine;
 using UnityEngine.AI;
-using RPG.SavingV0;
-using System.Collections.Generic;
+using RPG.Saving;
+using System.Text.Json;
 
 namespace RPG.Movement
 {
@@ -59,8 +59,13 @@ namespace RPG.Movement
         [System.Serializable]
         struct MoverSaveData
         {
-            public SerializableVector3 position;
-            public SerializableVector3 rotation;
+            public SerializableVector3 position { get; set; }
+            public SerializableVector3 rotation { get; set; }
+        }
+
+        public System.Type GetStateType()
+        {
+            return typeof(MoverSaveData);
         }
 
         public object CaptureState()
@@ -83,6 +88,8 @@ namespace RPG.Movement
             transform.position = data.position.ToVector();
             transform.eulerAngles = data.rotation.ToVector();
             navMeshAgent.enabled = true;
+
+            actionScheduler.CancelCurrentAction();
 
             //Dictionary<string, object> data = (Dictionary<string, object>)state;
             //navMeshAgent.enabled = false;

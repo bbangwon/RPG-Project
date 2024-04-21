@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.AI;
 using RPG.Core;
 using System.Text.Json;
+using System.Collections.Generic;
+
 
 
 
@@ -22,18 +24,33 @@ namespace RPG.Saving
 
         public object CaptureState()
         {
-            return new SerializableVector3(transform.position);
+            Dictionary<string, object> state = new Dictionary<string, object>();
+            foreach (ISaveable saveable in GetComponents<ISaveable>())
+            {
+                state[saveable.GetType().ToString()] = saveable.CaptureState();
+            }
+            return state;
         }
 
         public void RestoreState(object state)
         {
-            GetComponent<NavMeshAgent>().enabled = false;
+            Dictionary<string, object> stateDict = JsonSerializer.Deserialize<Dictionary<string, object>>(state.ToString());
+            foreach (ISaveable saveable in GetComponents<ISaveable>())
+            {
+                string typeName = saveable.GetType().ToString();
+                if (stateDict.ContainsKey(typeName))
+                {
+                    object stateObject = JsonSerializer.Deserialize(stateDict[typeName].ToString(), saveable.GetStateType());
+                    saveable.RestoreState(stateObject);
+                }
+            }
+            //GetComponent<NavMeshAgent>().enabled = false;
 
-            SerializableVector3 serializablePostion = JsonSerializer.Deserialize<SerializableVector3>(state.ToString());
-            transform.position = serializablePostion.ToVector();
+            //SerializableVector3 serializablePostion = JsonSerializer.Deserialize<SerializableVector3>(state.ToString());
+            //transform.position = serializablePostion.ToVector();
 
-            GetComponent<NavMeshAgent>().enabled = true;
-            GetComponent<ActionScheduler>().CancelCurrentAction();
+            //GetComponent<NavMeshAgent>().enabled = true;
+            //GetComponent<ActionScheduler>().CancelCurrentAction();
         }
 
 #if UNITY_EDITOR
