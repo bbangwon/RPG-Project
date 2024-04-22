@@ -1,4 +1,5 @@
-using RPG.SavingV0;
+using RPG.Saving;
+using System;
 using UnityEngine;
 
 namespace RPG.Core
@@ -42,6 +43,11 @@ namespace RPG.Core
             actionScheduler.CancelCurrentAction();
         }
 
+        public Type GetStateType()
+        {
+            return typeof(float);
+        }
+
         public object CaptureState()
         {
             return healthPoints;
@@ -55,5 +61,7 @@ namespace RPG.Core
                 Die();
             }
         }
+
+
     }
 }
