@@ -1,14 +1,13 @@
-using RPG.Saving;
+using RPG.SavingV0;
 using System.Collections;
 using UnityEngine;
 
-namespace RPG.SceneManagement
+namespace RPG.SceneManagement.SavingV0
 {
     public class SavingWrapper : MonoBehaviour
     {
+        const string defualtSaveFile = "save";
         SavingSystem savingSystem;
-        const string defaultSaveFile = "save";
-
         [SerializeField] float fadeInTime = 0.2f;
 
         private void Awake()
@@ -16,16 +15,15 @@ namespace RPG.SceneManagement
             savingSystem = GetComponent<SavingSystem>();
         }
 
-        private IEnumerator Start()
+        IEnumerator Start()
         {
             Fader fader = FindObjectOfType<Fader>();
-
             fader.FadeOutImmediate();
-            yield return savingSystem.LoadLastScene(defaultSaveFile);
+            yield return savingSystem.LoadLastScene(defualtSaveFile);
             yield return fader.FadeIn(fadeInTime);
         }
 
-        private void Update()
+        void Update()
         {
             if(Input.GetKeyDown(KeyCode.S))
             {
@@ -40,13 +38,14 @@ namespace RPG.SceneManagement
 
         public void Save()
         {
-            savingSystem.Save(defaultSaveFile);
+            Debug.Log("Saving game...");
+            savingSystem.Save(defualtSaveFile);
         }
 
         public void Load()
         {
-            savingSystem.Load(defaultSaveFile);
+            Debug.Log("Loading game...");
+            savingSystem.Load(defualtSaveFile);
         }
-    }
-
+    } 
 }
