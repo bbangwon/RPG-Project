@@ -1,5 +1,6 @@
 using RPG.Core;
 using RPG.Movement;
+using System;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -9,6 +10,8 @@ namespace RPG.Combat
         [SerializeField] float weaponRange = 2f;
         [SerializeField] float timeBetweenAttacks = 1f;
         [SerializeField] float weaponDamage = 5f;
+        [SerializeField] GameObject weaponPrefab;
+        [SerializeField] Transform handTransform;
 
         CombatTarget target;
         ActionScheduler actionScheduler;
@@ -25,13 +28,11 @@ namespace RPG.Combat
             actionScheduler = GetComponent<ActionScheduler>();
             animator = GetComponent<Animator>();
             health = GetComponent<Health>();
-        }
 
-        bool GetIsRange()
-        {
-            if (target == null) return false;
-            float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
-            return distanceToTarget < weaponRange;
+            if (weaponPrefab != null)
+            {
+                SpawnWeapon();
+            }
         }
 
         private void Update()
@@ -49,6 +50,18 @@ namespace RPG.Combat
                 mover.Cancel();
                 AttackBehaviour();
             }
+        }
+
+        private void SpawnWeapon()
+        {
+            Instantiate(weaponPrefab, handTransform);                
+        }
+
+        bool GetIsRange()
+        {
+            if (target == null) return false;
+            float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
+            return distanceToTarget < weaponRange;
         }
 
         void AttackBehaviour()
