@@ -12,6 +12,7 @@ namespace RPG.Combat
         [SerializeField] float weaponDamage = 5f;
         [SerializeField] GameObject weaponPrefab;
         [SerializeField] Transform handTransform;
+        [SerializeField] AnimatorOverrideController weaponOverride = null;
 
         CombatTarget target;
         ActionScheduler actionScheduler;
@@ -22,13 +23,16 @@ namespace RPG.Combat
 
         float timeSinceLastAttack = Mathf.Infinity;
 
-        private void Start()
+        private void Awake()
         {
             mover = GetComponent<Mover>();
             actionScheduler = GetComponent<ActionScheduler>();
             animator = GetComponent<Animator>();
             health = GetComponent<Health>();
+        }
 
+        private void Start()
+        {
             if (weaponPrefab != null)
             {
                 SpawnWeapon();
@@ -54,7 +58,8 @@ namespace RPG.Combat
 
         private void SpawnWeapon()
         {
-            Instantiate(weaponPrefab, handTransform);                
+            Instantiate(weaponPrefab, handTransform);     
+            animator.runtimeAnimatorController = weaponOverride;
         }
 
         bool GetIsRange()
