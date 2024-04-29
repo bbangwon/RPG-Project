@@ -16,10 +16,6 @@ PrefabInstance:
       propertyPath: weapon
       value: 
       objectReference: {fileID: 11400000, guid: 2cd9d53909acb0244b4f1fb865639cfb, type: 2}
-    - target: {fileID: 7032028926914661202, guid: 5fe34410607827344bdf32bc86d9874b, type: 3}
-      propertyPath: m_Center.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9075767363532894552, guid: 5fe34410607827344bdf32bc86d9874b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
