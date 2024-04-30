@@ -1,4 +1,5 @@
 using RPG.Core;
+using UnityEditor.U2D;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -8,6 +9,10 @@ namespace RPG.Combat
         [SerializeField] float speed = 1f;
         [SerializeField] bool isHoming = false;
         [SerializeField] GameObject hitEffect = null;
+        [SerializeField] float maxLifeTime = 10f;
+        [SerializeField] GameObject[] destoryOnHit = null;
+        [SerializeField] float lifeAfterImpact = 2f;
+
         CombatTarget target;
         float damage = 0;
 
@@ -34,6 +39,8 @@ namespace RPG.Combat
         {
             this.target = target;
             this.damage = damage;
+
+            Destroy(gameObject, maxLifeTime);
         }
 
         private Vector3 GetAimLocation()
@@ -54,11 +61,22 @@ namespace RPG.Combat
             if (target.IsDead()) return;
             target.TakeDamage(damage);
 
+            speed = 0;
+
             if (hitEffect != null)
             {
                 Instantiate(hitEffect, GetAimLocation(), transform.rotation);
             }
-            Destroy(gameObject);
+
+            if (destoryOnHit != null)
+            {
+                foreach (var toDestroy in destoryOnHit)
+                {
+                    Destroy(toDestroy);
+                }
+            }
+
+            Destroy(gameObject, lifeAfterImpact);
         }
     }
 
