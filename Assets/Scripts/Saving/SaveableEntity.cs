@@ -43,7 +43,15 @@ namespace RPG.Saving
                 string typeName = saveable.GetType().ToString();
                 if (stateDict.ContainsKey(typeName))
                 {
-                    object stateObject = JsonSerializer.Deserialize(stateDict[typeName].ToString(), saveable.GetStateType());
+                    string value = stateDict[typeName].ToString();
+                    //JsonSerializer가 string으로 Deserialize할때 처리못하는 이슈가 있어..
+                    if (saveable.GetStateType() == typeof(string))
+                    {
+                        saveable.RestoreState(value);
+                        continue;
+                    }
+
+                    object stateObject = JsonSerializer.Deserialize(value, saveable.GetStateType());
                     saveable.RestoreState(stateObject);
                 }
             }
