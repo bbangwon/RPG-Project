@@ -1,8 +1,8 @@
+using RPG.Attributes;
 using RPG.Combat;
 using RPG.Core;
 using RPG.Movement;
 using System;
-using UnityEditor.TerrainTools;
 using UnityEngine;
 
 namespace RPG.Control
