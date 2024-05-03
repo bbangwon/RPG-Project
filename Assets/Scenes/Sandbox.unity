@@ -4593,7 +4593,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 93529817867327175, guid: 8fd4794301c14c047ae586d4c0034c13, type: 3}
       propertyPath: startingLevel
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 415999912488516806, guid: 8fd4794301c14c047ae586d4c0034c13, type: 3}
       propertyPath: m_Name
@@ -4642,6 +4642,10 @@ PrefabInstance:
     - target: {fileID: 2339928851990004356, guid: 8fd4794301c14c047ae586d4c0034c13, type: 3}
       propertyPath: defaultWeaponName
       value: Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173943682972254812, guid: 8fd4794301c14c047ae586d4c0034c13, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
