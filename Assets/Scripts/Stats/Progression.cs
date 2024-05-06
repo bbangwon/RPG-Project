@@ -15,9 +15,9 @@ namespace RPG.Stats
             {
                 if (progressionCharacterClass.characterClass != characterClass) continue;
 
-                if (progressionCharacterClass.health.Length < level) return 0;
+                //if (progressionCharacterClass.health.Length < level) return 0;
 
-                return progressionCharacterClass.health[level - 1];
+                //return progressionCharacterClass.health[level - 1];
             }
 
             return 0;
@@ -27,7 +27,15 @@ namespace RPG.Stats
         class ProgressionCharacterClass
         {
             public CharacterClass characterClass;
-            public float[] health;
+            //public float[] health;
+            public ProgressionStat[] stats;
+        }
+
+        [Serializable]
+        class ProgressionStat
+        {
+            public Stat stat;
+            public float[] levels;
         }
     }
 }
