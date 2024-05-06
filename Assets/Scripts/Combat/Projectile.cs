@@ -14,6 +14,7 @@ namespace RPG.Combat
         [SerializeField] float lifeAfterImpact = 2f;
 
         CombatTarget target;
+        GameObject instigator = null;
         float damage = 0;
 
         CapsuleCollider targetCapsuleCollider;
@@ -35,10 +36,11 @@ namespace RPG.Combat
             transform.Translate(speed * Time.deltaTime * Vector3.forward);
         }
 
-        public void SetTarget(CombatTarget target, float damage)
+        public void SetTarget(CombatTarget target, GameObject instigator, float damage)
         {
             this.target = target;
             this.damage = damage;
+            this.instigator = instigator;
 
             Destroy(gameObject, maxLifeTime);
         }
@@ -59,7 +61,7 @@ namespace RPG.Combat
         {
             if (other.GetComponent<CombatTarget>() != target) return;
             if (target.IsDead()) return;
-            target.TakeDamage(damage);
+            target.TakeDamage(instigator, damage);
 
             speed = 0;
 

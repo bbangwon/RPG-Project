@@ -32,7 +32,7 @@ namespace RPG.Attributes
             healthPoints = baseStats.GetHealth();
         }
 
-        public void TakeDamage(float damage)
+        public void TakeDamage(GameObject instigator, float damage)
         {
             healthPoints = Mathf.Max(healthPoints - damage, 0);
             Debug.Log(healthPoints);
@@ -40,8 +40,10 @@ namespace RPG.Attributes
             if (healthPoints == 0)
             {
                 Die();
+                AwardExperience(instigator);
             }
         }
+
 
         public float GetPercentage()
         {
@@ -55,6 +57,12 @@ namespace RPG.Attributes
             isDead = true;
             animator.SetTrigger("die");
             actionScheduler.CancelCurrentAction();
+        }
+        private void AwardExperience(GameObject instigator)
+        {
+            Experience experience = instigator.GetComponent<Experience>();
+            if (experience == null) return;
+            experience.GainExperience(baseStats.GetExperienceReward());
         }
 
         public Type GetStateType()

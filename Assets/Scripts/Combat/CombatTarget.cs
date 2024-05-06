@@ -22,9 +22,9 @@ namespace RPG.Combat
             return health.IsDead();
         }
 
-        public void TakeDamage(float damage)
+        public void TakeDamage(GameObject instigator, float damage)
         {
-            health.TakeDamage(damage);
+            health.TakeDamage(instigator, damage);
         }
 
 
