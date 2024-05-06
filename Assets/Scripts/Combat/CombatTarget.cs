@@ -12,6 +12,11 @@ namespace RPG.Combat
             health = GetComponent<Health>();
         }
 
+        public Health GetHealth()
+        {
+            return health;
+        }
+
         public bool IsDead()
         {
             return health.IsDead();
@@ -21,5 +26,7 @@ namespace RPG.Combat
         {
             health.TakeDamage(damage);
         }
+
+
     }
 }

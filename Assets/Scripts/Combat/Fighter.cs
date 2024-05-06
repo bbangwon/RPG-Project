@@ -65,6 +65,11 @@ namespace RPG.Combat
             weapon.Spawn(rightHandTransform, leftHandTransform, animator);
         }
 
+        public CombatTarget GetTarget()
+        {
+            return target;
+        }
+
         bool GetIsRange()
         {
             if (target == null) return false;
