@@ -3,6 +3,7 @@ using TMPro;
 
 namespace RPG.Attributes
 {
+
     public class HealthDisplay : MonoBehaviour
     {
         Health health;
