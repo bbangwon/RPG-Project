@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -36,6 +37,11 @@ namespace RPG.Saving
         public void Load(string saveFile)
         {
             RestoreCapture(LoadFile(saveFile));
+        }
+
+        public void Delete(string defaultSaveFile)
+        {
+            File.Delete(GetPathFromSaveFile(defaultSaveFile));
         }
 
         private void SaveFile(string saveFile, Dictionary<string, object> dictionary)
@@ -86,5 +92,7 @@ namespace RPG.Saving
         {
             return Path.Combine(Application.persistentDataPath, saveFile + ".sav");
         }
+
+
     }
 }
