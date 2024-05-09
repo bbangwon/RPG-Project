@@ -21,8 +21,7 @@ namespace RPG.SceneManagement
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("Player entered portal");
-            if (other.tag == "Player")
+            if (other.CompareTag("Player"))
             {
                 StartCoroutine(Transition());
             }

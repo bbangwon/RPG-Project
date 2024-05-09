@@ -26,6 +26,16 @@ namespace RPG.Stats
             return levels[level - 1];
         }
 
+        public int GetLevels(Stat stat, CharacterClass characterClass)
+        {
+            BuildLookup();
+
+            if (!lookupTable.ContainsKey(characterClass)) return 1;
+            if (!lookupTable[characterClass].ContainsKey(stat)) return 1;
+
+            return lookupTable[characterClass][stat].Length;
+        }
+
         private void BuildLookup()
         {
             if(lookupTable != null) return;
