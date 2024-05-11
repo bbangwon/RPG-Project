@@ -18,16 +18,25 @@ namespace RPG.Movement
 
         private void Awake()
         {
-            navMeshAgent = GetComponent<NavMeshAgent>();
-            animator = GetComponentInChildren<Animator>();
-            actionScheduler = GetComponent<ActionScheduler>();
-            health = GetComponent<Health>();
+            InitComponents();
         }
 
         void Update()
         {
             navMeshAgent.enabled = !health.IsDead();
             UpdateAnimator();
+        }
+
+        void InitComponents()
+        {
+            if (navMeshAgent == null)
+                navMeshAgent = GetComponent<NavMeshAgent>();
+            if (animator == null)
+                animator = GetComponentInChildren<Animator>();
+            if (actionScheduler == null)
+                actionScheduler = GetComponent<ActionScheduler>();
+            if (health == null)
+                health = GetComponent<Health>();
         }
 
         public void StartMoveAction(Vector3 destination, float speedFraction)
@@ -83,6 +92,8 @@ namespace RPG.Movement
 
         public void RestoreState(object state)
         {
+            InitComponents();
+
             MoverSaveData data = (MoverSaveData)state;
             navMeshAgent.enabled = false;
             transform.position = data.position.ToVector();

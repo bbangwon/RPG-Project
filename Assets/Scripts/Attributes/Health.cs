@@ -8,6 +8,8 @@ namespace RPG.Attributes
 {
     public class Health : MonoBehaviour, ISaveable
     {
+        [SerializeField] float regenerationPercentage = 70f;
+
         float healthPoints = -1f;
 
         Animator animator;
@@ -22,17 +24,26 @@ namespace RPG.Attributes
 
         private void Awake()
         {
-            animator = GetComponent<Animator>();
-            actionScheduler = GetComponent<ActionScheduler>();
-            baseStats = GetComponent<BaseStats>();
+            InitComponents();
         }
 
         private void Start()
         {
-            if(healthPoints < 0)
+            baseStats.onLevelUp += RegenerateHealth;
+            if (healthPoints < 0)
             {
                 healthPoints = baseStats.GetStat(Stat.Health);
             }
+        }
+
+        private void InitComponents()
+        {
+            if(animator == null)
+                animator = GetComponent<Animator>();
+            if (actionScheduler == null)
+                actionScheduler = GetComponent<ActionScheduler>();
+            if (baseStats == null)
+                baseStats = GetComponent<BaseStats>();
         }
 
         public void TakeDamage(GameObject instigator, float damage)
@@ -65,6 +76,12 @@ namespace RPG.Attributes
             experience.GainExperience(baseStats.GetStat(Stat.ExperienceReward));
         }
 
+        private void RegenerateHealth()
+        {
+            float regenHealthPoints = baseStats.GetStat(Stat.Health) * (regenerationPercentage / 100);
+            healthPoints = Mathf.Max(healthPoints, regenHealthPoints);
+        }
+
         public Type GetStateType()
         {
             return typeof(float);
@@ -77,6 +94,8 @@ namespace RPG.Attributes
 
         public void RestoreState(object state)
         {
+            InitComponents();
+
             healthPoints = (float)state;
             if (healthPoints == 0)
             {

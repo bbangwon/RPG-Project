@@ -27,10 +27,7 @@ namespace RPG.Combat
 
         private void Awake()
         {
-            mover = GetComponent<Mover>();
-            actionScheduler = GetComponent<ActionScheduler>();
-            animator = GetComponent<Animator>();
-            health = GetComponent<Health>();
+            InitComponents();
         }
 
         private void Start()
@@ -56,6 +53,18 @@ namespace RPG.Combat
                 mover.Cancel();
                 AttackBehaviour();
             }
+        }
+
+        private void InitComponents()
+        {
+            if (mover == null)
+                mover = GetComponent<Mover>();
+            if (actionScheduler == null)
+                actionScheduler = GetComponent<ActionScheduler>();
+            if (animator == null)
+                animator = GetComponent<Animator>();
+            if (health == null)
+                health = GetComponent<Health>();
         }
 
         public void EquipWeapon(Weapon weapon)
@@ -149,6 +158,8 @@ namespace RPG.Combat
 
         public void RestoreState(object state)
         {
+            InitComponents();
+
             string weaponName = (string)state;
             Weapon weapon = Resources.Load<Weapon>(weaponName);
             EquipWeapon(weapon);
