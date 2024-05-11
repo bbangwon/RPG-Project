@@ -2,6 +2,7 @@ using RPG.Attributes;
 using RPG.Core;
 using RPG.Movement;
 using RPG.Saving;
+using RPG.Stats;
 using System;
 using UnityEngine;
 
@@ -17,6 +18,7 @@ namespace RPG.Combat
         CombatTarget target;
         ActionScheduler actionScheduler;
 
+        BaseStats baseStats;
         Animator animator;
         Mover mover;
         Health health;
@@ -65,6 +67,8 @@ namespace RPG.Combat
                 animator = GetComponent<Animator>();
             if (health == null)
                 health = GetComponent<Health>();
+            if (baseStats == null)
+                baseStats = GetComponent<BaseStats>();
         }
 
         public void EquipWeapon(Weapon weapon)
@@ -136,13 +140,15 @@ namespace RPG.Combat
         {
             if (target == null) return;
 
-            if(currentWeapon.HasProjectile())
+            float damage = baseStats.GetStat(Stat.Damage);            
+
+            if (currentWeapon.HasProjectile())
             {
-                currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target, gameObject);
+                currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target, gameObject, damage);
             }
             else
             {
-                target.TakeDamage(gameObject, currentWeapon.GetDamage());
+                target.TakeDamage(gameObject, damage);
             }
         }
 
