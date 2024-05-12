@@ -54,7 +54,7 @@ namespace RPG.Stats
 
         private float GetBaseStat(Stat stat)
         {
-            return progression.GetStat(stat, characterClass, CalculateLevel());
+            return progression.GetStat(stat, characterClass, GetLevel());
         }
 
         public int GetLevel()
