@@ -1,3 +1,4 @@
+using GameDevTV.Utils;
 using RPG.Attributes;
 using RPG.Combat;
 using RPG.Core;
@@ -25,7 +26,7 @@ namespace RPG.Control
 
         CombatTarget player;
 
-        Vector3 guardLocation;
+        LazyValue<Vector3> guardPosition;
 
         ActionScheduler actionScheduler;
 
@@ -44,11 +45,13 @@ namespace RPG.Control
 
             player = GameObject.FindWithTag("Player")
                 .GetComponent<CombatTarget>();
+
+            guardPosition = new LazyValue<Vector3>(() => transform.position);
         }
 
         private void Start()
         {
-            guardLocation = transform.position;
+            guardPosition.ForceInit();
         }
 
         private void Update()
@@ -84,7 +87,7 @@ namespace RPG.Control
 
         private void PatrolBehaviour()
         {
-            Vector3 nextPosition = guardLocation;
+            Vector3 nextPosition = guardPosition.value;
 
             if(patrolPath != null)
             {
