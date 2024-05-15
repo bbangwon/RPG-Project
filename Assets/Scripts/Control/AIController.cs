@@ -41,13 +41,13 @@ namespace RPG.Control
             mover = GetComponent<Mover>();
 
             actionScheduler = GetComponent<ActionScheduler>();
+
+            player = GameObject.FindWithTag("Player")
+                .GetComponent<CombatTarget>();
         }
 
         private void Start()
         {
-            player = GameObject.FindWithTag("Player")
-                .GetComponent<CombatTarget>();
-
             guardLocation = transform.position;
         }
 
