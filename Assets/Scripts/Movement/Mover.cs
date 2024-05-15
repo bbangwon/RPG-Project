@@ -92,8 +92,6 @@ namespace RPG.Movement
 
         public void RestoreState(object state)
         {
-            InitComponents();
-
             MoverSaveData data = (MoverSaveData)state;
             navMeshAgent.enabled = false;
             transform.position = data.position.ToVector();
