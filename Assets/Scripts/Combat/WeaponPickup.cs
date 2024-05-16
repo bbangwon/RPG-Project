@@ -1,5 +1,4 @@
 using RPG.Control;
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -47,6 +46,11 @@ namespace RPG.Combat
                 Pickup(callingController.GetComponent<Fighter>());
             }
             return true;
+        }
+
+        public CursorType GetCursorType()
+        {
+            return CursorType.Pickup;
         }
     }
 

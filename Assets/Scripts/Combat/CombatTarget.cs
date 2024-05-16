@@ -1,6 +1,5 @@
 using RPG.Attributes;
 using RPG.Control;
-using UnityEditor.TerrainTools;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -40,6 +39,11 @@ namespace RPG.Combat
             }            
 
             return true;
+        }
+
+        public CursorType GetCursorType()
+        {
+            return CursorType.Combat;
         }
     }
 }
