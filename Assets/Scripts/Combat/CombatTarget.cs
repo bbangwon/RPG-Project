@@ -1,10 +1,12 @@
 using RPG.Attributes;
+using RPG.Control;
+using UnityEditor.TerrainTools;
 using UnityEngine;
 
 namespace RPG.Combat
 {
     [RequireComponent(typeof(Health))]
-    public class CombatTarget : MonoBehaviour
+    public class CombatTarget : MonoBehaviour, IRaycastable
     {
         Health health;
         private void Awake()
@@ -27,6 +29,17 @@ namespace RPG.Combat
             health.TakeDamage(instigator, damage);
         }
 
+        public bool HandleRaycast(PlayerController callingController)
+        {
+            Fighter fighter = callingController.GetComponent<Fighter>();
 
+            if (!fighter.CanAttack(this)) return false;
+            if (Input.GetMouseButton(0))
+            {
+                fighter.Attack(this);
+            }            
+
+            return true;
+        }
     }
 }
