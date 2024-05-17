@@ -147,6 +147,8 @@ GameObject:
   - component: {fileID: 5677723396352966720}
   - component: {fileID: 3104568276691596044}
   - component: {fileID: 1519816990726029419}
+  - component: {fileID: 7200176825970053258}
+  - component: {fileID: 7451042781958610257}
   m_Layer: 5
   m_Name: Damage Text
   m_TagString: Untagged
@@ -171,7 +173,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 2}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &2826313073621730177
@@ -249,3 +251,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5497d7123af81354ab1618d245a0b531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!111 &7200176825970053258
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4723024903100723408}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: bad805a3cf337dd4a87381ac3cdfb911, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: bad805a3cf337dd4a87381ac3cdfb911, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!225 &7451042781958610257
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4723024903100723408}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
