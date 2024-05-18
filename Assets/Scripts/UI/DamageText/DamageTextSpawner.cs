@@ -6,11 +6,6 @@ namespace RPG.UI.DamageText
     {
         [SerializeField] DamageText damageTextPrefab;
 
-        private void Start()
-        {
-            Spawn(10);            
-        }
-
         public void Spawn(float damageAmount)
         {
             DamageText damageText = Instantiate(damageTextPrefab, transform);
