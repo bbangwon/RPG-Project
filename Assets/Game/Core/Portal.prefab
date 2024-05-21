@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8505097167940804547}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 4291985831731570264}
   - component: {fileID: 7420037062299136290}
   - component: {fileID: 8391454481065709161}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Portal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,3 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: -1
   spawnPoint: {fileID: 8505097167940804547}
+  destination: 0
+  fadeOutTime: 0.5
+  fadeInTime: 1
+  fadeWaitTime: 0.5
