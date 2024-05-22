@@ -6,7 +6,7 @@ namespace RPG.Combat
     {
         public void OnHit()
         {
-            
+            Debug.Log("Weapon Hit" + gameObject.name);
         }
     }
 

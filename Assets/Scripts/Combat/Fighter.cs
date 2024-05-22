@@ -27,18 +27,19 @@ namespace RPG.Combat
 
         float timeSinceLastAttack = Mathf.Infinity;
 
-        LazyValue<WeaponConfig> currentWeapon;
+        WeaponConfig currentWeaponConfig;
+        LazyValue<Weapon> currentWeapon;
 
         private void Awake()
         {
-            currentWeapon = new LazyValue<WeaponConfig>(SetupDefaultWeapon);
+            currentWeaponConfig = defaultWeapon;
+            currentWeapon = new LazyValue<Weapon>(SetupDefaultWeapon);
             InitComponents();
         }
 
-        private WeaponConfig SetupDefaultWeapon()
+        private Weapon SetupDefaultWeapon()
         {
-            AttachWeapon(defaultWeapon);
-            return defaultWeapon;
+            return AttachWeapon(defaultWeapon);
         }
 
         private void Start()
@@ -79,14 +80,13 @@ namespace RPG.Combat
 
         public void EquipWeapon(WeaponConfig weapon)
         {
-            currentWeapon.value = weapon;
-            AttachWeapon(weapon);
+            currentWeaponConfig = weapon;
+            currentWeapon.value = AttachWeapon(weapon);
         }
 
-        private void AttachWeapon(WeaponConfig weapon)
+        private Weapon AttachWeapon(WeaponConfig weapon)
         {
-            if (weapon == null) return;
-            weapon.Spawn(rightHandTransform, leftHandTransform, animator);
+            return weapon.Spawn(rightHandTransform, leftHandTransform, animator);
         }
 
         public CombatTarget GetTarget()
@@ -98,7 +98,7 @@ namespace RPG.Combat
         {
             if (target == null) return false;
             float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
-            return distanceToTarget < currentWeapon.value.GetRange();
+            return distanceToTarget < currentWeaponConfig.GetRange();
         }
 
         void AttackBehaviour()
@@ -144,7 +144,7 @@ namespace RPG.Combat
         {
             if(stat == Stat.Damage)
             {
-                yield return currentWeapon.value.GetDamage();
+                yield return currentWeaponConfig.GetDamage();
             }
         }
 
@@ -152,7 +152,7 @@ namespace RPG.Combat
         {
             if(stat == Stat.Damage)
             {
-                yield return currentWeapon.value.GetPercentageBonus();
+                yield return currentWeaponConfig.GetPercentageBonus();
             }
         }
 
@@ -167,11 +167,16 @@ namespace RPG.Combat
         {
             if (target == null) return;
 
-            float damage = baseStats.GetStat(Stat.Damage);            
-
-            if (currentWeapon.value.HasProjectile())
+            float damage = baseStats.GetStat(Stat.Damage);   
+            
+            if(currentWeapon.value != null)
             {
-                currentWeapon.value.LaunchProjectile(rightHandTransform, leftHandTransform, target, gameObject, damage);
+                currentWeapon.value.OnHit();
+            }
+
+            if (currentWeaponConfig.HasProjectile())
+            {
+                currentWeaponConfig.LaunchProjectile(rightHandTransform, leftHandTransform, target, gameObject, damage);
             }
             else
             {
@@ -186,7 +191,7 @@ namespace RPG.Combat
 
         public object CaptureState()
         {
-            return currentWeapon.value.name;
+            return currentWeaponConfig.name;
         }
 
         public void RestoreState(object state)
